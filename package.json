@@ -1,6 +1,6 @@
 {
   "name": "crmgraphqlcourse",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "GraphQL Course",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,8 @@
   "author": "Daniel Gonzalez Briseño",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.25.0"
+    "apollo-server": "^2.25.0",
+    "graphql": "^15.5.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
