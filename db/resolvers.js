@@ -25,6 +25,8 @@ const courses = [
 const resolvers = {
   Query: {
     getCourses: (_, { input }, context, info) => {
+      console.log( context );
+
       const result = courses.filter((course) => {
         return course.technology === input.technology;
       });
