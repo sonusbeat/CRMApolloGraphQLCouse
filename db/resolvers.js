@@ -1,4 +1,5 @@
-const User = require("../models/User");
+const User   = require("../models/User");
+const bcrypt = require("bcryptjs");
 
 // Resolvers
 const resolvers = {
@@ -14,10 +15,14 @@ const resolvers = {
       const userExists = await User.findOne({ email });
       
       if (userExists) {
-        throw new Error(`User with email: ${ email } already exists`);
+        throw new Error(`User with email "${ email }" already exists!`);
       }
       
+      // Generate Salt
+      const salt = await bcrypt.genSalt(10);
+
       // Hash Password
+      input.password = await bcrypt.hash(password, salt);
 
       try {
 
