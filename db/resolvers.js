@@ -1,3 +1,5 @@
+const User = require("../models/User");
+
 // Resolvers
 const resolvers = {
 
@@ -6,10 +8,33 @@ const resolvers = {
   },
 
   Mutation: {
-    newUser: (_, {input} ) => {
-      console.log( input );
+    newUser: async (_, {input} ) => {
+      // Check if user is not register
+      const { email, password } = input;
+      const userExists = await User.findOne({ email });
+      
+      if (userExists) {
+        throw new Error(`User with email: ${ email } already exists`);
+      }
+      
+      // Hash Password
 
-      return "Creating ...";
+      try {
+
+        // Create new Instance of Model User
+        const user = new User(input);
+
+        // Save to database
+        user.save();
+
+        // Return the new user object
+        return user;
+
+      } catch( error ) {
+        console.error(error);
+      }
+      
+
     }
   }
 

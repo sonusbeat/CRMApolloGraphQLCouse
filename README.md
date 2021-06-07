@@ -4,10 +4,22 @@ This is a Udemy course tutorial repository.
 
 ## Playground
 
-### Main Editor
+### Sending input to console
 ```
 mutation newUser($input: UserInput) {
   newUser(input:$input)
+}
+```
+
+### Create New User
+```
+mutation newUser($input: UserInput) {
+  newUser(input: $input) {
+    id
+    first_name
+    last_name
+    email
+  }
 }
 ```
 
