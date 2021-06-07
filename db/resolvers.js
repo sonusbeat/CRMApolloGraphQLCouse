@@ -14,15 +14,24 @@ const courses = [
     {
         title: 'ReactJS Advanced – FullStack React GraphQL and Apollo',
         technology: 'React'
+    },
+    {
+        title: 'NextJs – Next with Redux and MongoDB',
+        technology: 'Next'
     }
 ];
 
 // Resolvers
 const resolvers = {
-    Query: {
-        getCourses: () => courses,
-        getTechnologies: () => courses,
-    }
+  Query: {
+    getCourses: (_, { input }, context, info) => {
+      const result = courses.filter((course) => {
+        return course.technology === input.technology;
+      });
+
+      return result;
+    },
+  },
 };
 
 module.exports = resolvers;
