@@ -1,6 +1,8 @@
 // Resolvers
 const resolvers = {
-  Query: {}
+  Query: {
+    getCourse: () => "Lorem Ipsum dolor dolem"
+  }
 };
 
 module.exports = resolvers;
