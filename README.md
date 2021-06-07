@@ -2,9 +2,23 @@
 
 This is a Udemy course tutorial repository.
 
-## Create new Mutation
+## Playground
+
+### Main Editor
 ```
-mutation newUser {
-  newUser
+mutation newUser($input: UserInput) {
+  newUser(input:$input)
+}
+```
+
+### Query Variables
+```
+{
+  "input": {
+    "first_name": "Daniel",
+    "last_name": "González",
+    "email": "qbixmex@gmail.com",
+    "password": "secretodivino"
+  }
 }
 ```

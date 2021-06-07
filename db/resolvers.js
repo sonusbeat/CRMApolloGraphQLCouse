@@ -6,7 +6,11 @@ const resolvers = {
   },
 
   Mutation: {
-    newUser: () => "Creating New User"
+    newUser: (_, {input} ) => {
+      console.log( input );
+
+      return "Creating ...";
+    }
   }
 
 };
