@@ -5,11 +5,12 @@ const bcrypt = require("bcryptjs");
 const resolvers = {
 
   Query: {
-    getCourse: () => "Lorem Ipsum dolor dolem"
+    getCourse: () => "List of courses"
   },
 
   Mutation: {
-    newUser: async (_, {input} ) => {
+
+    newUser: async (_, { input } ) => {
       // Check if user is not register
       const { email, password } = input;
       const userExists = await User.findOne({ email });
@@ -40,6 +41,24 @@ const resolvers = {
       }
       
 
+    },
+
+    authenticateUser: async (_, { input }) => {
+
+      // Destructuring email and password from input object
+      const { email, password } = input;
+
+      // Find user by email
+      const userExists = await User.findOne({ email });
+
+      // Check if user exists
+      if (!userExists) {
+        throw new Error(`User with email "${ email }" does not exist !`);
+      }
+
+      // Check if password is correct
+
+      // Create Token
     }
   }
 

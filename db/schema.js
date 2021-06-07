@@ -9,11 +9,20 @@ const typeDefs = gql`
     created_at: String
   }
 
+  type Token {
+    token: String
+  }
+
   input UserInput {
     first_name: String!
     last_name : String!
     email     : String!
     password  : String!
+  }
+
+  input AthenticateInput {
+    email   : String!
+    password: String!
   }
 
   type Query {
@@ -22,7 +31,10 @@ const typeDefs = gql`
 
   type Mutation {
     newUser(input: UserInput): User
+    authenticateUser(input: AthenticateInput): Token 
   }
 `;
+
+// 
 
 module.exports = typeDefs;
