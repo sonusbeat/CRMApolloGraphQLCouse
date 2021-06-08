@@ -38,3 +38,20 @@ mutation newClient($input: ClientInput) {
   "authorization": "eyJhbGciOiJIUz ..." <-- token
 }
 ```
+
+### Get Clients
+
+#### Main Editor
+```
+query getClients {
+  getClients {
+    id
+    first_name
+    last_name
+    email
+    phone
+    company
+    created_at
+  }
+}
+```

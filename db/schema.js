@@ -51,6 +51,9 @@ const typeDefs = gql`
     # Products
     getProducts: [Product]
     getProduct(id: ID!): Product
+
+    # Clients
+    getClients: [Client]
   }
 
   input ProductInput {

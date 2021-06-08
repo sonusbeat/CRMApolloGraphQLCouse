@@ -12,10 +12,12 @@ const resolvers = {
 
   Query: {
 
+    // User
     getUser: async (_, { token }) => {
       return await jwt.verify( token, process.env.SECRET );
     },
 
+    // Products
     getProducts: async () => {
 
       try {
@@ -41,8 +43,22 @@ const resolvers = {
 
       // If product exists, return Product Object
       return product;
-    }
+    },
 
+    // Clients
+    getClients: async () => {
+
+      try {
+
+        return await Client.find({});
+
+      } catch( error ) {
+
+        console.log( error );
+
+      }
+
+    }
   },
 
   Mutation: {
