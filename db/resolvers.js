@@ -127,6 +127,24 @@ const resolvers = {
       }
     },
 
+    updateProduct: async (_, { id, input }) => {
+
+      // Check if product exists
+      let product = Product.findById(id);
+
+      // Validation
+      if (!product) {
+        throw new Error("Product not founded!");
+      }
+
+      // Update product
+      // Note: { new: true } returns updated object
+      product = Product.findOneAndUpdate({ _id: id }, input, { new: true });
+
+      // If product is updated, return Product Object
+      return product;
+    },
+
   }
 
 };

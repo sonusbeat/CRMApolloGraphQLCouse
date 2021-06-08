@@ -107,3 +107,30 @@ query getProduct($id: ID!) {
   "id": "60bedaeb10d2b15befee4ad7"
 }
 ```
+
+### Update Product
+
+#### Main Editor
+```
+mutation updateProduct($id: ID!, $input: ProductInput) {
+   updateProduct(id: $id, input: $input) {
+    id
+    name
+    price
+    stock
+    created_at
+  }
+}
+```
+
+#### Query Variables
+```
+{
+  "id": "60bedaeb10d2b15befee4ad7",
+  "input": {
+    "name": "Smart Phone",
+    "stock": 14,
+    "price": 395.90
+  }
+}
+```
