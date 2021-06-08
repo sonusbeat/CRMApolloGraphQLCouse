@@ -34,7 +34,11 @@ const typeDefs = gql`
   }
 
   type Query {
+    # Users
     getUser(token: String!): User
+
+    # Products
+    getProducts: [Product]
   }
 
   input ProductInput {

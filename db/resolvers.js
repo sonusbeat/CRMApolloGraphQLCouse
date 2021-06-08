@@ -10,9 +10,25 @@ const jwt = require("jsonwebtoken");
 const resolvers = {
 
   Query: {
+
     getUser: async (_, { token }) => {
       return await jwt.verify( token, process.env.SECRET );
+    },
+
+    getProducts: async () => {
+
+      try {
+
+        return await Product.find({});
+
+      } catch (error) {
+
+        console.log( error );
+
+      }
+
     }
+
   },
 
   Mutation: {

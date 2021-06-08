@@ -70,3 +70,18 @@ mutation newProduct($input: ProductInput) {
   }
 }
 ```
+### Get Products
+
+#### Main Editor
+
+```
+query getProducts {
+  getProducts {
+    id
+    name
+    stock
+    price
+    created_at
+  }
+}
+```
