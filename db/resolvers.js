@@ -194,12 +194,13 @@ const resolvers = {
         // Create new Instance of Client Model
         const newClient = new Client(input);
 
+        // Set seller id
+        newClient.seller = "60bdb09dc1c42126d54c4d7a";
+
         // Save to database
-        // const result = await newClient.save();
+        const result = await newClient.save();
 
         // Return Client Object
-        // return result;
-
         return newClient;
 
       } catch (error) {
