@@ -1,5 +1,6 @@
 const User    = require("../models/User");
 const Product = require("../models/Product");
+const Product = require("../models/Client");
 const bcrypt  = require("bcryptjs");
 
 require("dotenv").config({ path: "variables.env" });
@@ -46,6 +47,7 @@ const resolvers = {
 
   Mutation: {
 
+    // Users
     newUser: async (_, { input } ) => {
       // Check if user is not register
       const { email, password } = input;
@@ -108,6 +110,7 @@ const resolvers = {
 
     },
 
+    // Products
     newProduct: async (_, { input }) => {
       try {
 
@@ -170,6 +173,8 @@ const resolvers = {
       }
 
     },
+
+    // Clients
 
   }
 

@@ -2,10 +2,10 @@ const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   type User {
-    id: ID
+    id        : ID
     first_name: String
-    last_name: String
-    email: String
+    last_name : String
+    email     : String
     created_at: String
   }
 
@@ -19,6 +19,17 @@ const typeDefs = gql`
     stock     : Int
     price     : Float
     created_at: String
+  }
+
+  type Client {
+    id        : ID
+    first_name: String
+    last_name : String
+    email     : String
+    company   : String
+    phone     : String
+    created_at: String
+    seller    : ID
   }
 
   input UserInput {
@@ -48,6 +59,14 @@ const typeDefs = gql`
     price: Float!
   }
 
+  input ClientInput {
+    first_name: String!
+    last_name : String!
+    email     : String!
+    company   : String!
+    phone     : String
+  }
+
   type Mutation {
 
     # Users
@@ -58,6 +77,9 @@ const typeDefs = gql`
     newProduct(input: ProductInput): Product
     updateProduct( id: ID!, input: ProductInput ): Product
     deleteProduct( id: ID! ): String
+
+    # Clients
+    newClient(input: ClientInput): Client
   }
 `;
 
