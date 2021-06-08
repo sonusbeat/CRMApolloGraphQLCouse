@@ -134,3 +134,19 @@ mutation updateProduct($id: ID!, $input: ProductInput) {
   }
 }
 ```
+
+### Delete Product
+
+#### Main Editor
+```
+mutation deleteProduct($id: ID!) {
+  deleteProduct(id: $id)
+}
+```
+
+#### Query Variables
+```
+{
+  "id": "60bee933dda5b36e517b7681"
+}
+```
