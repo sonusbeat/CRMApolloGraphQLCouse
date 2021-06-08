@@ -66,14 +66,32 @@ const resolvers = {
 
       try {
 
-        return await Client.find({ seller: id });
+        return await Client.find({ seller: id.toString() });
 
       } catch( error ) {
 
         console.log( error );
 
       }
-    }
+    },
+
+    getClient: async ( _, { id }, context ) => {
+      // Check if client exists
+      const client = await Client.findById(id);
+
+      // Check if client exists in database
+      if (!client) {
+        throw new Error("Client not founded!");
+      }
+
+      // Check if client seller is the same user who created
+      if(client.seller.toString() !== context.user.id) {
+        throw new Error("Access Denied!");
+      }
+
+      // Return Client Object
+      return client;
+    } 
   },
 
   Mutation: {

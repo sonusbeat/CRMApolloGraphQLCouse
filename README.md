@@ -80,3 +80,36 @@ query getSellerClients {
   "authorization": "eyJhbGciOiJIUzI1 ..." <-- token
 }
 ```
+
+### Get Client
+
+#### Main Editor
+```
+query getClient($id: ID!) {
+  getClient(id: $id) {
+    id
+    first_name
+    last_name
+    email
+    phone
+    company
+    created_at
+    seller
+  }
+}
+```
+
+#### Query Variables
+```
+{
+  "id": "60bef5ed1ff0007f7675c4ba"
+}
+```
+
+#### HTTP Headers
+
+```
+{
+  "authorization": "eyJhbGciOiJIUzI1 ..." <-- token
+}
+```
