@@ -175,33 +175,35 @@ const resolvers = {
     },
 
     // Clients
-    newClient: async (_, { input }) => {
+    newClient: async ( _, { input }, context ) => {
 
+      // Deconstruct id from context.user object
+      const { user } = context;
+
+      // Deconstruct id from input object
       const { email } = input;
 
       // Check if the client has been already registered
       const client = await Client.findOne({ email });
 
+      // Validation
       if (client) {
         throw new Error("The client cannot be created because it has already been registed!");
       }
-
-      // Assing Seller
-      // code ...
-
+     
       try {
 
         // Create new Instance of Client Model
         const newClient = new Client(input);
 
-        // Set seller id
-        newClient.seller = "60bdb09dc1c42126d54c4d7a";
+        // Assing Seller
+        newClient.seller = user.id;
 
         // Save to database
         const result = await newClient.save();
 
         // Return Client Object
-        return newClient;
+        return result;
 
       } catch (error) {
 

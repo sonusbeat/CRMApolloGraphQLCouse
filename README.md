@@ -31,3 +31,10 @@ mutation newClient($input: ClientInput) {
 	}
 }
 ```
+
+#### HTTP Headers
+```
+{
+  "authorization": "eyJhbGciOiJIUz ..." <-- token
+}
+```
