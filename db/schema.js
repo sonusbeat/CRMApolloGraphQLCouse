@@ -54,6 +54,7 @@ const typeDefs = gql`
 
     # Clients
     getClients: [Client]
+    getSellerClients: [Client]
   }
 
   input ProductInput {

@@ -58,6 +58,21 @@ const resolvers = {
 
       }
 
+    },
+
+    getSellerClients: async ( _, {}, context ) => {
+
+      const { id } = context.user;
+
+      try {
+
+        return await Client.find({ seller: id });
+
+      } catch( error ) {
+
+        console.log( error );
+
+      }
     }
   },
 

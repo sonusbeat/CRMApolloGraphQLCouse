@@ -55,3 +55,28 @@ query getClients {
   }
 }
 ```
+
+#### Main Editor
+
+```
+query getSellerClients {
+  getSellerClients {
+    id
+    first_name
+    last_name
+    email
+    phone
+    company
+    created_at
+    seller
+  }
+}
+```
+
+#### HTTP Headers
+
+```
+{
+  "authorization": "eyJhbGciOiJIUzI1 ..." <-- token
+}
+```
