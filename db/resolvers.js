@@ -3,12 +3,15 @@ const bcrypt = require("bcryptjs");
 
 require("dotenv").config({ path: "variables.env" });
 const generateToken = require("../helpers/generateToken");
+const jwt = require("jsonwebtoken");
 
 // Resolvers
 const resolvers = {
 
   Query: {
-    getCourse: () => "List of courses"
+    getUser: async (_, { token }) => {
+      return await jwt.verify( token, process.env.SECRET );
+    }
   },
 
   Mutation: {
@@ -71,7 +74,7 @@ const resolvers = {
       // Create Token
       return {
         token: generateToken(userExists, process.env.SECRET)
-      }
+      };
 
     }
   }

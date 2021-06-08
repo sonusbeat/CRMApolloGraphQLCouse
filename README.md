@@ -3,6 +3,8 @@
 This is a Udemy course tutorial repository.
 
 ## Create new token
+
+### Main Editor
 ```
 mutation authenticateUser($input: AthenticateInput) {
   authenticateUser(input: $input) {
@@ -11,11 +13,32 @@ mutation authenticateUser($input: AthenticateInput) {
 }
 ```
 
+### Query Variables
+
 ```
 {
   "input": {
     "email": "qbixmex@gmail.com",
     "password": "secretodivino"
   }
+}
+```
+
+## Get User
+
+### Main Editor
+```
+query getUser($token: String!) {
+  getUser(token: $token) {
+    id
+  }
+}
+```
+
+### Query Variables
+
+```
+{
+  "token": "eyJhbGciOi ..."
 }
 ```
