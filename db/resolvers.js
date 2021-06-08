@@ -1,6 +1,6 @@
 const User    = require("../models/User");
 const Product = require("../models/Product");
-const Product = require("../models/Client");
+const Client  = require("../models/Client");
 const bcrypt  = require("bcryptjs");
 
 require("dotenv").config({ path: "variables.env" });
@@ -175,6 +175,40 @@ const resolvers = {
     },
 
     // Clients
+    newClient: async (_, { input }) => {
+
+      const { email } = input;
+
+      // Check if the client has been already registered
+      const client = await Client.findOne({ email });
+
+      if (client) {
+        throw new Error("The client cannot be created because it has already been registed!");
+      }
+
+      // Assing Seller
+      // code ...
+
+      try {
+
+        // Create new Instance of Client Model
+        const newClient = new Client(input);
+
+        // Save to database
+        // const result = await newClient.save();
+
+        // Return Client Object
+        // return result;
+
+        return newClient;
+
+      } catch (error) {
+
+        console.log(error);
+
+      }
+
+    }
 
   }
 
