@@ -1,6 +1,9 @@
 const User   = require("../models/User");
 const bcrypt = require("bcryptjs");
 
+require("dotenv").config({ path: "variables.env" });
+const generateToken = require("../helpers/generateToken");
+
 // Resolvers
 const resolvers = {
 
@@ -45,6 +48,7 @@ const resolvers = {
 
     authenticateUser: async (_, { input }) => {
 
+
       // Destructuring email and password from input object
       const { email, password } = input;
 
@@ -57,8 +61,18 @@ const resolvers = {
       }
 
       // Check if password is correct
+      const passwordCorrect = await bcrypt.compare( password, userExists.password );
+
+      // Throw error if password does not match
+      if (!passwordCorrect) {
+        throw new Error("Password Invalid !");
+      }
 
       // Create Token
+      return {
+        token: generateToken(userExists, process.env.SECRET)
+      }
+
     }
   }
 
