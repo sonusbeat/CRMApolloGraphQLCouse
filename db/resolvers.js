@@ -283,6 +283,37 @@ const resolvers = {
 
       // Return updated Client Object
       return client;
+    },
+
+    deleteClient: async ( _, { id }, context ) => {
+
+      // Check if product exists
+      const client = await Client.findById(id);
+
+      // Check if client exists
+      if (!client) {
+        throw new Error("Client not founded!");
+      }
+
+      // Check if user can delete the client
+      if(client.seller.toString() !== context.user.id) {
+        throw new Error("You're not authorized to delete this client!");
+      }
+
+      try {
+
+        // Delete client
+        await Client.findOneAndDelete({ _id: id });
+
+        // Return String Message
+        return "Client Deleted!";
+
+      } catch (error) {
+
+        console.log(error);
+
+      }
+
     }
 
   }

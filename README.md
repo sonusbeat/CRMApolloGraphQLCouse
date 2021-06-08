@@ -152,3 +152,27 @@ mutation updateClient( $id: ID!, $input: ClientInput ) {
   "authorization": "eyJhbGciOiJIU ..." <-- token
 }
 ```
+
+### Delete Client
+
+#### Main Editor
+```
+mutation deleteClient( $id: ID!) {
+  deleteClient(id: $id)
+}
+```
+
+#### Query Variables
+```
+{
+  "id": "60bf01e8cf9d0a8d28887c58"
+}
+```
+
+#### HTTP Headers
+
+```
+{
+  "authorization": "eyJhbGciOiJIU ..." <-- token
+}
+```
