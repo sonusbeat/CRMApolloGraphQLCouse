@@ -91,7 +91,7 @@ const resolvers = {
 
       // Return Client Object
       return client;
-    } 
+    }
   },
 
   Mutation: {
@@ -260,6 +260,29 @@ const resolvers = {
 
       }
 
+    },
+
+    updateClient: async ( _, { id, input }, context ) => {
+
+      // Check if client exists
+      let client = await Client.findById(id);
+
+      // Check if client exists
+      if(!client) {
+        throw new Error("Client not founded!");
+      }
+
+      // Check if user can update the client
+      if(client.seller.toString() !== context.user.id) {
+        throw new Error("You're not authorized to update this client!");
+      }
+
+      // Update client
+      // Note: { new: true } returns updated object
+      client = await Client.findOneAndUpdate({ _id: id }, input, { new: true });
+
+      // Return updated Client Object
+      return client;
     }
 
   }

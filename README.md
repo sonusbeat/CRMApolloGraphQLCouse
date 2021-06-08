@@ -113,3 +113,42 @@ query getClient($id: ID!) {
   "authorization": "eyJhbGciOiJIUzI1 ..." <-- token
 }
 ```
+
+### Update Client
+
+#### Main Editor
+```
+mutation updateClient( $id: ID!, $input: ClientInput ) {
+  updateClient(id: $id, input: $input) {
+    id
+    first_name
+    last_name
+    email
+    phone
+    company
+    seller
+  }
+}
+```
+
+#### Query Variables
+```
+{
+  "id": "60bf01e8cf9d0a8d28887c58",
+  "input": {
+    "first_name": "Alberlo",
+    "last_name": "García Robles",
+    "email": "alberto@noewhere.com",
+    "company": "Servicios Profesionales S.A de C.V",
+    "phone": "3334445555"
+  }
+}
+```
+
+#### HTTP Headers
+
+```
+{
+  "authorization": "eyJhbGciOiJIU ..." <-- token
+}
+```
