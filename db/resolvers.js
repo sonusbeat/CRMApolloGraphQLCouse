@@ -34,7 +34,7 @@ const resolvers = {
 
       try {
 
-        // Create new Instance of Model User
+        // Create new Instance of User Model
         const user = new User(input);
 
         // Save to database
@@ -44,14 +44,14 @@ const resolvers = {
         return user;
 
       } catch( error ) {
-        console.error(error);
+
+        console.log(error);
+
       }
-      
 
     },
 
     authenticateUser: async (_, { input }) => {
-
 
       // Destructuring email and password from input object
       const { email, password } = input;
@@ -77,7 +77,27 @@ const resolvers = {
         token: generateToken(userExists, process.env.SECRET)
       };
 
-    }
+    },
+
+    newProduct: async (_, { input }) => {
+      try {
+
+        // Create new Instance of Product Model
+        const product = new Product( input );
+
+        // Save to database
+        const result = await product.save();
+
+        // Return Product Object
+        return result;
+
+      } catch ( error ) {
+
+        console.log(error);
+
+      }
+    },
+
   }
 
 };

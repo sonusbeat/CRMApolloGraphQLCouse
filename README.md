@@ -42,3 +42,31 @@ query getUser($token: String!) {
   "token": "eyJhbGciOi ..."
 }
 ```
+## Products
+
+### Create Product
+
+#### Main Editor
+```
+mutation newProduct($input: ProductInput) {
+  newProduct(input: $input) {
+    id
+    name
+    stock
+    price
+    created_at
+  }
+}
+```
+
+#### Query Variables
+
+```
+{
+  "input": {
+    "name": "Product Name",
+    "stock": 10,
+    "price": 0.00
+  }
+}
+```
