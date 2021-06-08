@@ -27,6 +27,19 @@ const resolvers = {
 
       }
 
+    },
+
+    getProduct: async (_, { id }) => {
+      // Check if product exists
+      const product = await Product.findById(id);
+
+      // Validation
+      if (!product) {
+        throw new Error("Product not founded!");
+      }
+
+      // If product exists, return Product Object
+      return product;
     }
 
   },

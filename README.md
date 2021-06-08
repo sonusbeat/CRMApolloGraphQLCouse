@@ -85,3 +85,25 @@ query getProducts {
   }
 }
 ```
+
+### Get Product
+
+#### Main Editor
+```
+query getProduct($id: ID!) {
+  getProduct(id: $id) {
+  	id
+  	name
+  	stock
+  	price
+  	created_at
+	}
+}
+```
+
+#### Query Variables
+```
+{
+  "id": "60bedaeb10d2b15befee4ad7"
+}
+```
