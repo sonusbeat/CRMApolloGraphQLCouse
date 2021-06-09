@@ -122,6 +122,24 @@ const resolvers = {
       }
 
     },
+
+    getOrder: async ( _, { id }, context ) => {
+      // Check if order exists
+      const order = await Order.findById(id);
+
+      // Check if order exists in database
+      if (!order) {
+        throw new Error("Order not founded!");
+      }
+
+      // Check if order belongs to the seller
+      if(order.seller.toString() !== context.user.id) {
+        throw new Error("Access Denied!");
+      }
+
+      // Return Order Object
+      return order;
+    },
   },
 
   Mutation: {

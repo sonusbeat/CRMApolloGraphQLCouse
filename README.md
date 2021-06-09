@@ -81,6 +81,7 @@ query getOrders {
 ### Get Seller Orders
 
 #### Main Editor
+
 ```
 query getSellerOrders {
   getSellerOrders {
@@ -99,6 +100,42 @@ query getSellerOrders {
 ```
 
 #### HTTP Headers
+
+```
+{
+  "authorization": "eyJhbGciOiJIUzI1NiI ..."
+}
+```
+### Get Seller Order
+
+#### Main Editor
+```
+query getOrder($id: ID!) {
+  getOrder(id: $id) {
+    id
+     order {
+        id
+        quantity
+      }
+      total
+      client
+      seller
+      created_at
+      status
+  }
+}
+```
+
+#### Query Variables
+
+```
+{
+  "id": "60c04f07ecbe403fba8551c4"
+}
+```
+
+#### HTTP Headers
+
 ```
 {
   "authorization": "eyJhbGciOiJIUzI1NiI ..."
