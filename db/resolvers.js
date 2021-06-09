@@ -1,6 +1,7 @@
 const User    = require("../models/User");
 const Product = require("../models/Product");
 const Client  = require("../models/Client");
+const Order   = require("../models/Order");
 const bcrypt  = require("bcryptjs");
 
 require("dotenv").config({ path: "variables.env" });
@@ -91,6 +92,19 @@ const resolvers = {
 
       // Return Client Object
       return client;
+    },
+
+    // Orders
+    getOrders: async () => {
+      try {
+
+        return await Order.find({});
+
+      } catch (error) {
+
+        console.log( error );
+
+      }
     }
   },
 
@@ -337,16 +351,28 @@ const resolvers = {
       for await ( const item of order ) {
         const product = await Product.findById(item.id);
 
-        if (item.quantity > product.stock) {
+        if (product.stock === 0) {
+          throw new Error(`There's no more available stock for the product: "${product.name}"!`);
+        } else if (item.quantity > product.stock) {
           throw new Error(`The product: "${product.name}" exceeds the available stock!`);
+        } else {
+          // Update product stock
+          product.stock = product.stock - item.quantity;
+          await product.save();
         }
       }
       
-      // Create a new Order
+      // Create new Instance of Order Model
+      const newOrder = new Order( input );
 
       // Assing seller
+      newOrder.seller = context.user.id;
 
       // Save to database
+      const result = await newOrder.save();
+
+      // Return Order Object
+      return result;
     },   
 
   }

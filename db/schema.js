@@ -38,7 +38,7 @@ const typeDefs = gql`
     total: Float
     client: ID
     seller: ID
-    date: String
+    created_at: String
     status: OrderStatus
   }
 
@@ -71,6 +71,9 @@ const typeDefs = gql`
     getClients: [Client]
     getSellerClients: [Client]
     getClient(id: ID!): Client
+
+    # Orders
+    getOrders: [Order]
   }
 
   input ProductInput {

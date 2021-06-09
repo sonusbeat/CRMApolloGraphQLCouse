@@ -25,7 +25,7 @@ const OrdersSchema = mongoose.Schema({
   },
 
   status: {
-    type: string,
+    type: String,
     default: "PENDING",
   },
 
