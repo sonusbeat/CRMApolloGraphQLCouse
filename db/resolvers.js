@@ -314,7 +314,38 @@ const resolvers = {
 
       }
 
-    }
+    },
+
+    // Orders
+    newOrder: async ( _, { input }, context ) => {
+
+      const { order, total, client: clientId, status } = input;
+
+      // Check if product exists
+      const product = await Product.findById(order[0].id);
+
+      if(!product) {
+        throw new Error("Product does not exist !");
+      }
+
+      // Check if client exists
+      const client = await Client.findById(clientId);
+
+      if(!client) {
+        throw new Error("Client does not exist !");
+      }
+
+      // Check if client belongs to seller
+      if (client.seller.toString() !== context.user.id ) {
+        throw new Error("You're not authorized to sell to this client!");
+      }
+
+      // Check if stock is available
+
+      // Assing seller
+
+      // Save to database
+    },   
 
   }
 

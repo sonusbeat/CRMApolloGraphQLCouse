@@ -96,7 +96,7 @@ const typeDefs = gql`
     order: [OrderProductInput]
     total: Float!
     client: ID!
-    status: String
+    status: OrderStatus
   }
 
   enum OrderStatus {
