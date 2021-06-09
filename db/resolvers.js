@@ -140,6 +140,20 @@ const resolvers = {
       // Return Order Object
       return order;
     },
+
+    getOrdersByStatus: async ( _, { status }, context ) => {
+
+      try {
+
+        return await Order.find({ seller: context.user.id, status });
+
+      } catch (error) {
+
+        console.log(error);
+
+      }
+
+    }
   },
 
   Mutation: {

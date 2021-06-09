@@ -206,3 +206,38 @@ mutation deleteOrder( $id: ID! ) {
   "authorization": "eyJhbGciOiJIUzI1NiI ..."
 }
 ```
+### Get Orders By Status
+
+#### Main Editor
+```
+query getOrdersByStatus( $status: String! ) {
+  getOrdersByStatus( status: $status ) {
+    id
+    order {
+    id
+    quantity
+    }
+    total
+    client
+    seller
+    created_at
+    status
+  }
+}
+```
+
+#### Query Variables
+
+```
+{
+  "status": "COMPLETED"
+}
+```
+
+#### HTTP Headers
+
+```
+{
+  "authorization": "eyJhbGciOiJIUzI1NiI ..."
+}
+```

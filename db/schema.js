@@ -76,6 +76,7 @@ const typeDefs = gql`
     getOrders: [Order]
     getSellerOrders: [Order]
     getOrder(id: ID!): Order
+    getOrdersByStatus(status: String!): [Order]
   }
 
   input ProductInput {
@@ -107,7 +108,7 @@ const typeDefs = gql`
   enum OrderStatus {
     PENDING
     COMPLETED
-    CANCELED
+    CANCELLED
   }
 
   type Mutation {
