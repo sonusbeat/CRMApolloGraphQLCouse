@@ -182,3 +182,27 @@ mutation updateOrder( $id: ID!, $input: OrderInput ) {
   "authorization": "eyJhbGciOiJIUzI1NiI ..."
 }
 ```
+
+### Delete Order
+
+#### Main Editor
+```
+mutation deleteOrder( $id: ID! ) {
+  deleteOrder( id: $id )
+}
+```
+#### Query Variables
+
+```
+{
+  "id": "60c050f0f6761441fa02ec0d"
+}
+```
+
+#### HTTP Headers
+
+```
+{
+  "authorization": "eyJhbGciOiJIUzI1NiI ..."
+}
+```

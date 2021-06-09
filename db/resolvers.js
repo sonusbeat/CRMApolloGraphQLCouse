@@ -462,6 +462,34 @@ const resolvers = {
       return order;
     },
 
+    deleteOrder: async ( _, { id }, context ) => {
+      // Check if order exists
+      const order = await Order.findById(id);
+
+      // Check if order exists
+      if (!order) {
+        throw new Error("Order does not exist!");
+      }
+
+      // Check if client can delete the order
+      if(order.seller.toString() !== context.user.id) {
+        throw new Error("You're not authorized to delete this order!");
+      }
+
+      try {
+
+        // Delete order
+        await Order.findOneAndDelete({ _id: id });
+
+        // Return String Message
+        return "Order Deleted!";
+
+      } catch (error) {
+
+        console.log(error);
+
+      }
+    }
   }
 
 };
