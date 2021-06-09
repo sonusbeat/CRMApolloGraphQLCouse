@@ -315,7 +315,7 @@ const resolvers = {
       // Check if client exists
       let client = await Client.findById(id);
 
-      // Check if client exists
+      // Validation
       if(!client) {
         throw new Error("Client not founded!");
       }
@@ -407,7 +407,60 @@ const resolvers = {
 
       // Return Order Object
       return result;
-    },   
+    },
+
+    updateOrder: async ( _, { id, input }, context ) => {
+
+      const { client: clientId } = input;
+
+      // Check if order exists
+      let order = await Order.findById(id);
+
+      // Validate order
+      if(!order) {
+        throw new Error("Order does not exist!");
+      }
+
+      // Check if client exists
+      const client = await Client.findById(clientId);
+
+      // Validate client
+      if(!client) {
+        throw new Error("Client does not exist!");
+      }
+
+      // Check if user can update the order
+      if(client.seller.toString() !== context.user.id) {
+        throw new Error("You're not authorized to update this order!");
+      }
+
+      // Check if client update order      
+      if(input.order) {
+
+        // Check if stock is available
+        for await ( const item of input.order ) {
+          const product = await Product.findById(item.id);
+  
+          if (product.stock === 0) {
+            throw new Error(`There's no more available stock for the product: "${product.name}"!`);
+          } else if (item.quantity > product.stock) {
+            throw new Error(`The product: "${product.name}" exceeds the available stock!`);
+          } else {
+            // Update product stock
+            product.stock = product.stock - item.quantity;
+            await product.save();
+          }
+        }
+
+      }
+
+      // Update order
+      // Note: { new: true } returns updated object
+      order = await Order.findOneAndUpdate({ _id: id }, input, { new: true });
+
+      // // Return updated Order Object
+      return order;
+    },
 
   }
 

@@ -141,3 +141,44 @@ query getOrder($id: ID!) {
   "authorization": "eyJhbGciOiJIUzI1NiI ..."
 }
 ```
+
+### Update Order
+
+#### Main Editor
+
+```
+mutation updateOrder( $id: ID!, $input: OrderInput ) {
+	updateOrder( id: $id, input: $input ) {
+    id
+    order {
+      id
+      quantity
+    }
+    total
+    client
+    seller
+    created_at
+    status
+  }
+}
+```
+
+#### Query Variables
+
+```
+{
+  "id": "60c04f07ecbe403fba8551c4",
+  "input": {
+    "client": "60bef944070d9f8375c39905",
+    "status": "PENDING"
+  }
+}
+```
+
+#### HTTP Headers
+
+```
+{
+  "authorization": "eyJhbGciOiJIUzI1NiI ..."
+}
+```
