@@ -105,7 +105,23 @@ const resolvers = {
         console.log( error );
 
       }
-    }
+    },
+
+    getSellerOrders: async ( _, {}, context ) => {
+
+      const { id } = context.user;
+
+      try {
+        
+        return await Order.find({ seller: id.toString() });
+
+      } catch (error) {
+
+        console.log( error );
+
+      }
+
+    },
   },
 
   Mutation: {

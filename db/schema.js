@@ -74,6 +74,7 @@ const typeDefs = gql`
 
     # Orders
     getOrders: [Order]
+    getSellerOrders: [Order]
   }
 
   input ProductInput {

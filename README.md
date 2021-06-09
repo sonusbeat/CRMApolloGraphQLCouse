@@ -77,3 +77,30 @@ query getOrders {
   "authorization": "eyJhbGciOiJIUzI1NiI ..."
 }
 ```
+
+### Get Seller Orders
+
+#### Main Editor
+```
+query getSellerOrders {
+  getSellerOrders {
+    id
+    order {
+      id
+      quantity
+    }
+    total
+    client
+    seller
+    created_at
+    status
+  }
+}
+```
+
+#### HTTP Headers
+```
+{
+  "authorization": "eyJhbGciOiJIUzI1NiI ..."
+}
+```
