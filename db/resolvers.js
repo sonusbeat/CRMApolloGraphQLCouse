@@ -321,13 +321,6 @@ const resolvers = {
 
       const { order, total, client: clientId, status } = input;
 
-      // Check if product exists
-      const product = await Product.findById(order[0].id);
-
-      if(!product) {
-        throw new Error("Product does not exist !");
-      }
-
       // Check if client exists
       const client = await Client.findById(clientId);
 
@@ -341,6 +334,15 @@ const resolvers = {
       }
 
       // Check if stock is available
+      for await ( const item of order ) {
+        const product = await Product.findById(item.id);
+
+        if (item.quantity > product.stock) {
+          throw new Error(`The product: "${product.name}" exceeds the available stock!`);
+        }
+      }
+      
+      // Create a new Order
 
       // Assing seller
 
