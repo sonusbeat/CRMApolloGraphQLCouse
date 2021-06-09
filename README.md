@@ -47,6 +47,33 @@ mutation newOrder($input: OrderInput) {
 #### HTTP Headers
 ```
 {
-  "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYmRiMTY2OWQzNDliMjdmZDlkNjZkMyIsImVtYWlsIjoiam9obmRvZUBnbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoiSm9obiIsImxhc3RfbmFtZSI6IkRvZSIsImlhdCI6MTYyMzIxNjEwOSwiZXhwIjoxNjIzMjIzMzA5fQ.J5ZMUxf5GhmMU45Z8Or1VAMBiRXEowSKgxD4ubJZRSo"
+  "authorization": "eyJhbGciOiJIUzI1NiI ..."
+}
+```
+
+### Get Orders
+
+#### Main Editor
+```
+query getOrders {
+  getOrders {
+    id
+    order {
+      id
+      quantity
+    }
+    total
+    client
+    seller
+    created_at
+    status
+  }
+}
+```
+
+#### HTTP Headers
+```
+{
+  "authorization": "eyJhbGciOiJIUzI1NiI ..."
 }
 ```
