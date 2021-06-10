@@ -32,6 +32,11 @@ const typeDefs = gql`
     seller    : ID
   }
 
+  type TopClient {
+    total: Float
+    client: [Client]
+  }
+
   type Order {
     id: ID
     order: [OrderGroup]
@@ -60,6 +65,7 @@ const typeDefs = gql`
   }
 
   type Query {
+
     # Users
     getUser(token: String!): User
 
@@ -77,6 +83,9 @@ const typeDefs = gql`
     getSellerOrders: [Order]
     getOrder(id: ID!): Order
     getOrdersByStatus(status: String!): [Order]
+
+    # Advanced Queries
+    bestClients: [TopClient]
   }
 
   input ProductInput {
@@ -131,6 +140,7 @@ const typeDefs = gql`
     newOrder(input: OrderInput): Order
     updateOrder( id: ID!, input: OrderInput ): Order
     deleteOrder( id: ID! ): String
+
   }
 `;
 

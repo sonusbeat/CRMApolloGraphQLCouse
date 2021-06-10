@@ -153,7 +153,39 @@ const resolvers = {
 
       }
 
-    }
+    },
+
+    // Advanced Search
+
+    bestClients: async () => {
+
+      const clients = Order.aggregate([
+
+        { $match: { status: "COMPLETED" } },
+
+        { $group: {
+          _id: "$client",
+          total: { $sum: "$total" }
+        }},
+
+        {
+          $lookup: {
+            from: "clients",
+            localField: "_id",
+            foreignField: "_id",
+            as: "client"
+          }
+        },
+
+        {
+          $sort: { total: -1 }
+        }
+
+      ]);
+
+      return clients;
+    },
+
   },
 
   Mutation: {
