@@ -32,11 +32,6 @@ const typeDefs = gql`
     seller    : ID
   }
 
-  type TopClient {
-    total: Float
-    client: [Client]
-  }
-
   type Order {
     id: ID
     order: [OrderGroup]
@@ -50,6 +45,16 @@ const typeDefs = gql`
   type OrderGroup {
     id: ID
     quantity: Int
+  }
+
+  type TopClient {
+    total: Float
+    client: [Client]
+  }
+
+  type TopSeller {
+    total: Float
+    seller: [User]
   }
 
   input UserInput {
@@ -86,6 +91,7 @@ const typeDefs = gql`
 
     # Advanced Queries
     bestClients: [TopClient]
+    bestSellers: [TopSeller]
   }
 
   input ProductInput {

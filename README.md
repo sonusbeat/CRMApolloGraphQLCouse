@@ -26,6 +26,15 @@ query bestClients {
 #### Main Editor
 
 ```
+query bestSellers {
+  bestSellers {  
+  	seller {
+      first_name
+      last_name
+    }
+    total
+  }
+}
 ```
 
 ### Searching Products

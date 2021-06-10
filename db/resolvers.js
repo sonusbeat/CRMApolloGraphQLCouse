@@ -159,14 +159,16 @@ const resolvers = {
 
     bestClients: async () => {
 
-      const clients = Order.aggregate([
+      const clients = await Order.aggregate([
 
         { $match: { status: "COMPLETED" } },
 
-        { $group: {
-          _id: "$client",
-          total: { $sum: "$total" }
-        }},
+        {
+          $group: {
+            _id: "$client",
+            total: { $sum: "$total" }
+          }
+        },
 
         {
           $lookup: {
@@ -184,6 +186,39 @@ const resolvers = {
       ]);
 
       return clients;
+    },
+
+    bestSellers: async () => {
+
+      const sellers = await Order.aggregate([
+
+        { $match: { status: "COMPLETED" } },
+
+        {
+          $group: {
+            _id: "$seller",
+            total: { $sum: "$total" }
+          }
+        },
+
+        {
+          $lookup: {
+            from: "users",
+            localField: "_id",
+            foreignField: "_id",
+            as: "seller"
+          }
+        },
+
+        { $limit: 5 },
+
+        {
+          $sort: { total: -1 }
+        }
+
+      ]);
+
+      return sellers;
     },
 
   },
