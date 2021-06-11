@@ -42,4 +42,19 @@ query bestSellers {
 #### Main Editor
 
 ```
+query searchProduct($text: String!) {
+  searchProduct(text: $text) {
+    name
+    stock
+    price
+  }
+}
+```
+
+#### Query Variables
+
+```
+{
+  "text": "Inches"
+}
 ```

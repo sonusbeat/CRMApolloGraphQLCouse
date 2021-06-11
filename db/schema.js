@@ -92,6 +92,7 @@ const typeDefs = gql`
     # Advanced Queries
     bestClients: [TopClient]
     bestSellers: [TopSeller]
+    searchProduct(text: String!): [Product]
   }
 
   input ProductInput {

@@ -221,6 +221,18 @@ const resolvers = {
       return sellers;
     },
 
+    searchProduct: async ( _, { text } ) => {
+      
+      const products = await Product.find({ $text: { $search: text } }).limit(10);
+
+      if(products.length === 0) {
+        throw new Error(`Can not find products with search term: "${text}"!`);
+      }
+
+      return products;
+  
+    },
+
   },
 
   Mutation: {
