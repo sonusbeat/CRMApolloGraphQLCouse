@@ -57,18 +57,6 @@ const typeDefs = gql`
     seller: [User]
   }
 
-  input UserInput {
-    first_name: String!
-    last_name : String!
-    email     : String!
-    password  : String!
-  }
-
-  input AthenticateInput {
-    email   : String!
-    password: String!
-  }
-
   type Query {
 
     # Users
@@ -93,6 +81,18 @@ const typeDefs = gql`
     bestClients: [TopClient]
     bestSellers: [TopSeller]
     searchProduct(text: String!): [Product]
+  }
+
+  input UserInput {
+    first_name: String!
+    last_name : String!
+    email     : String!
+    password  : String!
+  }
+
+  input AuthenticateInput {
+    email   : String!
+    password: String!
   }
 
   input ProductInput {
@@ -131,7 +131,7 @@ const typeDefs = gql`
 
     # Users
     newUser(input: UserInput): User
-    authenticateUser(input: AthenticateInput): Token 
+    authenticateUser(input: AuthenticateInput): Token 
 
     # Products
     newProduct(input: ProductInput): Product

@@ -1,6 +1,6 @@
 {
   "name": "crmgraphqlcourse",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "GraphQL Course",
   "main": "index.js",
   "scripts": {
